@@ -15,8 +15,8 @@
 Route::get('/','FrontController@index')->name('home');
 Route::get('/costumes','FrontController@costumes')->name('costumes');
 Route::get('/costume','FrontController@costume')->name('costume');
-
 Auth::routes();
+Route::get('/logout','Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
