@@ -14,14 +14,17 @@
 
 Route::get('/','FrontController@index')->name('home');
 Route::get('/costumes','FrontController@costumes')->name('costumes');
-Route::get('/costume','FrontController@costume')->name('costume');
+Route::get('/costume/{product}','FrontController@costume')->name('costume');
 Auth::routes();
 Route::get('/logout','Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
   Route::get('/',function(){
     return view('admin.index');
   })->name('admin.index');
+
+  Route::resource('product','ProductController');
+  Route::resource('category','CategoriesController');
 });
